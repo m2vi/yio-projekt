@@ -1,0 +1,22 @@
+{
+  "name": "yio",
+  "version": "0.0.0",
+  "description": "Website Project",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iuvoJS/yio.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iuvoJS/yio/issues"
+  },
+  "homepage": "https://github.com/iuvoJS/yio#readme"
+}

@@ -1,0 +1,93 @@
+@import "../../../lib/bootstrap-4.5.3/scss/bootstrap.scss";
+
+@import "fonts";
+@import "variables";
+@import "keyframes";
+@import "cookie";
+@import "navbar";
+@import "header";
+@import "about";
+@import "demo";
+@import "download";
+@import "contact";
+@import "footer";
+
+html {
+  background-repeat: no-repeat;
+  scroll-behavior: auto;
+
+  body {
+    position: relative;
+
+    a {
+      text-decoration: none;
+      transition: 300ms;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+  }
+}
+
+::selection {
+  color: #fff;
+  background-color: $primary-blue;
+  opacity: 1;
+}
+
+.bg-primary {
+  background-color: $primary-blue !important;
+}
+
+.btn-primary {
+  background-color: $primary-blue !important;
+  border-color: $primary-blue !important;
+}
+
+.bg-blue {
+  background-color: $middle-blue !important;
+}
+
+.bg-dark {
+  background-color: $dark-blue !important;
+}
+
+.fas {
+  color: #fff;
+}
+
+.modal-dialog,
+.modal-content {
+  border: none !important;
+}
+
+.close {
+  opacity: 1;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.yio-title {
+  font-family: "Montserrat", Arial;
+  font-style: normal;
+  font-weight: bold;
+  text-transform: uppercase;
+  word-break: break-all;
+
+  &::before {
+    content: 'Yeeet It Out!';
+
+    @include media-breakpoint-down(xs) {
+      content: 'YIO';
+    }
+  }
+}

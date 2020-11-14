@@ -1,0 +1,32 @@
+.about {
+  padding-top: 120px;
+  padding-bottom: 120px;
+
+  h3,
+  p,
+  h4 {
+    text-align: center;
+  }
+
+  p {
+    color: #666;
+    font-style: italic;
+  }
+
+  .about-icon {
+    border: 2px solid $primary-blue;
+    font-size: 2rem;
+    padding-top: 0.85rem;
+    line-height: 3.75rem;
+    color: $primary-blue;
+    text-align: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    margin: 0px auto 0.75rem auto;
+
+    i {
+      color: $primary-blue;
+    }
+  }
+}

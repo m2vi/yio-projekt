@@ -1,0 +1,134 @@
+@import "../../../lib/bootstrap-4.5.3/scss/bootstrap.scss"
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap")
+@font-face
+    font-family: "Plain"
+    src: url("../../../lib/fonts/Plain/Plain-Regular.woff2") format("woff2"),
+    url("../../../lib/fonts/Plain/Plain-Regular.woff") format("woff")
+    font-weight: normal
+    font-style: normal
+
+@font-face
+    font-family: "Plain"
+    src: url("../../../lib/fonts/Plain/Plain-Light.woff2") format("woff2"),
+    url("../../../lib/fonts/Plain/Plain-Light.woff") format("woff")
+    font-weight: 300
+    font-style: normal
+
+@font-face
+    font-family: "Plain"
+    src: url("../../../lib/fonts/Plain/Plain-Bold.woff2") format("woff2"),
+    url("../../../lib/fonts/Plain/Plain-Bold.woff") format("woff")
+    font-weight: bold
+    font-style: normal
+
+$font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+$section-padding: 110px
+
+
+body
+    font-family: "Plain", sans-serif
+
+nav
+    background-color: #ffffff
+    height: 72px
+    a 
+        color: #323232 !important
+    .navbar-brand
+        position: absolute
+        left: 15px
+        font-size: 1.5rem
+        font-weight: bold
+        font-style: normal
+        text-transform: uppercase
+    .nav
+        display: flex
+        justify-content: flex-end
+        width: 100% !important
+        .nav-item
+            padding: 8px 10px
+            .nav-link
+                font-weight: 500
+                font-family: $font
+                transition: 300ms
+                &:hover:not(.active)
+                    color: #006de2 !important
+            .active
+                color: #03a9f4 !important
+
+section
+    padding-top: 72px
+    min-height: 100vh
+    .container
+        padding-top: $section-padding
+        padding-bottom: $section-padding
+
+//Keybinds
+.keybinds
+    background-color: #006de2
+    color: #ffffff
+    .key
+        min-height: 6rem
+        overflow: hidden
+        display: flex
+        justify-content: flex-start
+
+        button
+            padding: 6px
+            display: flex
+            justify-content: center
+            align-items: center
+            height: 4rem
+            width: 4.5rem
+            border: 2.5px solid #ffffff
+            background-color: transparent
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15) !important
+            border-radius: .4rem
+            pointer-events: none;
+
+            span 
+                color: #ffffff
+                font-weight: bold
+                font-size: 1.1rem
+        p
+            margin-left: 2rem
+            width: 60%
+            font-size: 1.1rem
+            height: 4.5rem
+
+.key-lg
+    width: 5rem !important
+
+.key-plus
+    margin-right: 1.1rem
+    margin-left: 1.1rem
+    height: 4rem
+    display: flex
+    justify-content: center
+    align-items: center
+    font-size: 1.8rem
+    i::before
+        text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15)
+
+//Section How To Install
+.install
+    background-color: #03a9f4
+    color: #ffffff
+    text-align: center
+
+    h1, h2, h3
+        font-weight: bold
+        text-transform: uppercase
+        font-size: 3.2rem
+        padding-bottom: 2rem
+    h2
+        font-size: 3rem
+        transition: all 300ms
+        cursor: pointer
+        &:hover
+            opacity: 0.8
+    h3
+        padding-top: 3rem
+        font-size: 1.5rem
+        text-transform: none
+    a:hover
+        text-decoration: none

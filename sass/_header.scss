@@ -1,0 +1,131 @@
+.header {
+  position: relative;
+  min-height: 83vh;
+  background: radial-gradient(ellipse at bottom,
+      #0eb3ff 0%,
+      #005abb 100%);
+  background-image: url(../img/header-background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+
+  .container {
+    padding-top: 20vh;
+
+    @include media-breakpoint-down(sm) {
+      padding-top: 10vh;
+      min-height: 100vh;
+    }
+
+    @include media-breakpoint-up(md) {
+      text-align: left;
+    }
+
+
+    h1 {
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 90px;
+      color: $white;
+      width: 100%;
+    }
+
+    p {
+      font-size: 1.07rem;
+      color: $white;
+      width: 70%;
+      text-align: justify !important;
+
+      @include media-breakpoint-down(md) {
+        width: 100%;
+      }
+    }
+
+    a {
+      font-family: "Montserrat", Arial;
+      font-weight: 700;
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      color: $primary-blue !important;
+      border-radius: 0.1rem;
+      padding: 12px 20px;
+      margin-top: 3rem !important;
+      transition: 0.6s all;
+      border: 3px solid $primary-blue;
+      background-color: $white;
+
+      p {
+        transition: 0.6s;
+        color: $primary-blue !important;
+        font-weight: 400;
+        font-size: 0.9rem;
+        opacity: 0.5;
+        text-transform: none;
+        line-height: 10px;
+        margin-bottom: 0;
+        width: 100% !important;
+        text-align: center !important;
+      }
+
+      &:hover {
+        -webkit-box-shadow: 0px 10px 39px -12px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 10px 39px -12px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 10px 39px -12px rgba(0, 0, 0, 0.75);
+
+        p {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .scrolldown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .bounce {
+      position: absolute;
+      bottom: 25px;
+      font-size: 50px;
+      color: $white !important;
+      width: 60px;
+      height: 60px;
+      animation: bounce 2s infinite;
+
+      @media (max-height: 700px),
+      (max-width: 420px) {
+        display: none;
+      }
+
+      &:hover {
+        color: #4d4d4d;
+      }
+    }
+  }
+
+  .divider {
+    fill: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0;
+
+    @include media-breakpoint-down(sm) {
+      display: none !important;
+    }
+
+    svg {
+      height: 45px;
+
+      @include media-breakpoint-down(lg) {
+        height: 30px;
+      }
+
+      @include media-breakpoint-down(xs) {
+        height: 20px;
+      }
+    }
+  }
+}

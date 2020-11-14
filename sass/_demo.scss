@@ -1,0 +1,69 @@
+.demo {
+  background-color: $black;
+  min-height: 100vh;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container-sm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100% !important;
+    padding: 10rem;
+  }
+
+  @include media-breakpoint-down(sm) {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+
+    .container-sm {
+      padding: 0 !important;
+      margin: 0 !important;
+
+      .yio-demo {
+        height: 90vh !important;
+        width: 90vw !important;
+        object-fit: cover !important;
+      }
+    }
+  }
+}
+
+.slide-up {
+  animation: slide-up ease 400ms;
+  animation-iteration-count: 1;
+  transform-origin: 50% 50%;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translate(0px, 0px);
+  }
+
+  100% {
+    transform: translate(0px, -100px);
+  }
+}
+
+.slide-down {
+  animation: slide-down ease 400ms;
+  animation-iteration-count: 1;
+  transform-origin: 50% 50%;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translate(0px, -100px);
+    pointer-events: none;
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+    pointer-events: all;
+  }
+}

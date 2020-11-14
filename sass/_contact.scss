@@ -1,0 +1,26 @@
+#contact {
+  padding-top: 120px;
+  padding-bottom: 120px;
+  a {
+    color: $black;
+    h2 {
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+  }
+  small {
+    font-size: 10px;
+  }
+
+  textarea {
+    min-height: 6em;
+    max-height: 65vh;
+  }
+
+  .fa-phone-alt,
+  .fa-envelope,
+  .fa-map-marker-alt {
+    color: $dark-blue;
+  }
+}
