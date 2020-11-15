@@ -136,6 +136,7 @@ function LinksFrom() {
 //?   ******************
 //?   *     COOKIE     *
 //?   ******************
+
 // Create a Cookie
 // * Format: Cookiename, Content, Expire (in years and INT)
 function cCookie(n, c, e) {
@@ -238,6 +239,7 @@ TODO | kann ich ohne die Meldung machen?
 //?   ******************
 //?   *     NAVBAR     *
 //?   ******************
+
 const nav = document.getElementById("navbar");
 
 function scrollFunction() {
@@ -320,79 +322,6 @@ $(".mv-close").click(function () {
   });
 });
 
-// Windows Icon
-const windows = '<i class="fab fa-windows"></i>';
-// Android Icon
-const android = '<i class="fab fa-android"></i>';
-
-// Array with the Information
-const download = [
-  {
-    version: "BETA",
-    release: "19.01.2010",
-    filename: "yeeet_it_out.exe",
-    platform: windows,
-    mirror: "../files/yeeet_it_out.exe",
-    mediafire: "../files/yeeet_it_out.apk",
-  },
-  {
-    version: "BETA",
-    release: "19.01.2010",
-    filename: "yeeet_it_out.exe",
-    platform: windows,
-    mirror: "../files/yeeet_it_out.exe",
-    mediafire: "../files/yeeet_it_out.apk",
-  },
-  {
-    version: "BETA",
-    release: "19.01.2010",
-    filename: "yeeet_it_out.exe",
-    platform: windows,
-    mirror: "../files/yeeet_it_out.exe",
-    mediafire: "../files/yeeet_it_out.apk",
-  },
-  {
-    version: "BETA",
-    release: "19.01.2010",
-    filename: "yeeet_it_out.exe",
-    platform: windows,
-    mirror: "../files/yeeet_it_out.exe",
-    mediafire: "../files/yeeet_it_out.apk",
-  },
-  {
-    version: "BETA",
-    release: "19.01.2010",
-    filename: "yeeet_it_out.exe",
-    platform: windows,
-    mirror: "../files/yeeet_it_out.exe",
-    mediafire: "../files/yeeet_it_out.apk",
-  },
-  {
-    version: "BETA",
-    release: "19.01.2010",
-    filename: "yeeet_it_out.exe",
-    platform: windows,
-    mirror: "../files/yeeet_it_out.exe",
-    mediafire: "../files/yeeet_it_out.apk",
-  },
-  {
-    version: "BETA",
-    release: "19.01.2010",
-    filename: "yeeet_it_out.exe",
-    platform: windows,
-    mirror: "../files/yeeet_it_out.exe",
-    mediafire: "../files/yeeet_it_out.apk",
-  },
-  {
-    version: "BETA",
-    release: "19.01.2010",
-    filename: "yeeet_it_out.exe",
-    platform: windows,
-    mirror: "../files/yeeet_it_out.exe",
-    mediafire: "../files/yeeet_it_out.apk",
-  },
-];
-
 function version() {
   // For Loop that ends when download.length is passed
   for (var index = 0; index < download.length; index++) {
@@ -439,18 +368,28 @@ function demo() {
 }
 
 function checkDemo() {
+  // Calc the space between top and the start of the demo section
   let DemoOffStart = $("#demo").offset().top - vh(1);
-  let DemoOffEnd = $(".demo-end").offset().top;
-
+  // Calc the space between top and the end of the demo section
+  let DemoOffEnd = $(".demo-end").offset().top - vh(1);
   // If user is in the Demo section do sth
   if (
     document.body.scrollTop >= DemoOffStart &&
     document.body.scrollTop <= DemoOffEnd
   ) {
-    // Remove Animation Slide Down
-    nav.classList.remove("slide-down");
-    // Add Animation Slide Up
-    nav.classList.add("slide-up");
+    // Wait a bit to prevent the navbar from disappearing while scrolling
+    setTimeout(function () {
+      if (
+        document.body.scrollTop >= DemoOffStart &&
+        document.body.scrollTop <= DemoOffEnd
+      ) {
+        // Remove Animation Slide Down
+        nav.classList.remove("slide-down");
+        // Add Animation Slide Up
+        nav.classList.add("slide-up");
+      }
+      // 0.85 seconds
+    }, 850);
     // Else if you aren't in the section make the nav visible again
   } else if (nav.classList.contains("slide-up")) {
     nav.classList.remove("slide-up");
@@ -479,6 +418,7 @@ $(".navbar-pseudo").click(function () {
 //?   ******************
 //?   *    DOWNLOAD    *
 //?   ******************
+
 // Device is not supportet
 if ($("#nosupport").length != 0) {
   // Makes the text invisible

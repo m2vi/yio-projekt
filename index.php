@@ -1,5 +1,4 @@
 <?php
-#### WASSSUP
 require("./lang/translate.php");
 require("../../lib/OS/array.php");
 
@@ -429,7 +428,6 @@ if ($ip == $localhost and !isset($_COOKIE['dont_log'])) {
                 <fieldset>
                     <button class="btn btn-primary" type="submit"><?php echo $form->submit ?></button>
                 </fieldset>
-
                 <?php
                 if (isset($_GET['success'])) {
                     if ($_GET['success'] == 1) {
@@ -466,8 +464,6 @@ if ($ip == $localhost and !isset($_COOKIE['dont_log'])) {
                 </div>
             </div>
 
-
-
             <div class="row">
                 <div class="col-sm-6 col-md-3 item">
                     <h3><?php echo $footer->download->title ?></h3>
@@ -477,12 +473,13 @@ if ($ip == $localhost and !isset($_COOKIE['dont_log'])) {
                         </li>
                         <hr>
                         <li><a href="#" id="footer-del" onclick="delCookieLang()">Delete Cookies</a></li>
-                        <li><a href="#"><?php
-                                        echo $footer->download->ip;
+                        <li><a href="#">
+                                <?php
+                                echo $footer->download->ip;
 
-                                        echo $ip;
+                                echo $ip;
 
-                                        ?>
+                                ?>
                             </a>
                         </li>
                         <hr>
@@ -526,17 +523,10 @@ if ($ip == $localhost and !isset($_COOKIE['dont_log'])) {
     <script src="http://localhost/lib/aos-master/aos.js"></script>
     <script src="./js/preload.js"></script>
     <script src="./js/app.js"></script>
+    <script src="./lang/settings/settings.js"></script>
     <noscript>
         <style>
             body {
-                display: none !important;
-            }
-
-            * {
-                display: none !important;
-            }
-
-            section {
                 display: none !important;
             }
         </style>
@@ -549,7 +539,7 @@ if ($ip == $localhost and !isset($_COOKIE['dont_log'])) {
 
        ~(˘▾˘~)
 
-            Coded without skill by m2v
+            Coded by m2v
             Discord: m2v#7180
 
     ~~~~~~~~~~~~~~~~~~-->
