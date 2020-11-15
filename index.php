@@ -1,4 +1,5 @@
 <?php
+#### WASSSUP
 require("./lang/translate.php");
 require("../../lib/OS/array.php");
 
