@@ -68,8 +68,12 @@ $('a[href*="#"]')
   });
 
 function PlatformInUrl() {
-  if (window.location.href.indexOf(navigator.platform) <= -1) {
-    window.location.href = "?platform=" + navigator.platform;
+  if (
+    window.location.href.indexOf(navigator.platform) <= -1 ||
+    window.location.href.indexOf("TouchDevice") <= -1
+  ) {
+    window.location.href =
+      "?platform=" + navigator.platform + "&TouchDevice=" + is_touch_device();
   }
 }
 

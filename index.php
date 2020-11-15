@@ -1,29 +1,8 @@
 <?php
 require("./lang/translate.php");
 require("../../lib/OS/array.php");
-
-function IP()
-{
-    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-        return $_SERVER['HTTP_CLIENT_IP'];
-    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-        return $_SERVER['HTTP_X_FORWARDED_FOR'];
-    } else {
-        return $_SERVER['REMOTE_ADDR'];
-    }
-}
-$ip = IP();
-
-$localhost = "127.0.0.1";
-
-if ($ip == "::1") {
-    $ip = $localhost;
-}
-
-// Block logging if you client is localhost
-if ($ip == $localhost and !isset($_COOKIE['dont_log'])) {
-    setcookie("dont_log", "0", time() + (60 * 60 * 24 * 30), "/");
-}
+require("../../lib/IP/ip.php");
+require("../../lib/LOG/log.php")
 ?>
 <html lang="<?php echo $htmllang ?>">
 
@@ -77,24 +56,6 @@ if ($ip == $localhost and !isset($_COOKIE['dont_log'])) {
             </svg>
         </div>
     </div>
-
-    <?php
-
-    if (!isset($_COOKIE['dont_log']) and $ip != "127.0.0.1") {
-        $log_directory = getcwd() . "/log/";
-        $log_count2 = glob($log_directory . "*");
-        $log_count = count($log_count2);
-
-        $js_platform = null;
-        if (isset($_GET["platform"])) {
-            $js_platform = " or " . $_GET["platform"] . "\n";
-        }
-        $log_name = $OS . "_" . date("H;i;s");
-        $log = fopen("./log/" . "log-" . $log_count . ".log", "w");
-        fwrite($log, "IP: " . $ip . "\nDate: " . date("g:i j, n, Y") . "\nPlatform: " . $OS . " or " . $_SERVER['HTTP_USER_AGENT'] . $js_platform);
-        fclose($log);
-    }
-    ?>
 
     <div class="cookie">
         <div class="container content">
@@ -473,15 +434,8 @@ if ($ip == $localhost and !isset($_COOKIE['dont_log'])) {
                         </li>
                         <hr>
                         <li><a href="#" id="footer-del" onclick="delCookieLang()">Delete Cookies</a></li>
-                        <li><a href="#">
-                                <?php
-                                echo $footer->download->ip;
-
-                                echo $ip;
-
-                                ?>
-                            </a>
-                        </li>
+                        <li><a href="#"><?php echo $footer->download->ip;
+                                        echo $ip; ?></a></li>
                         <hr>
 
                         <li>
@@ -526,10 +480,9 @@ if ($ip == $localhost and !isset($_COOKIE['dont_log'])) {
     <script src="./lang/settings/settings.js"></script>
     <noscript>
         <style>
-            body {
+            * {
                 display: none !important;
             }
-        </style>
         </style>
     </noscript>
 </body>
