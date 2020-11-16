@@ -18,6 +18,12 @@
    require("../../../lib/IP/ip.php");
    require("../../../lib/OS/array.php");
 
+   if (isset($_GET['load']) == "all") {
+      $stop = 250;
+   } else {
+      $stop = null;
+   }
+
    $ipapi = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
 
    if ($ip != $localhost and isset($ipapi)) {
@@ -51,20 +57,23 @@
             <tbody>
                <?php $Email_Id = 1;
                foreach ($submits as $submit) : ?>
-                  <tr>
+                  <tr id="submit-tr-<?php echo $Email_Id ?>">
                      <th scope="row" title="<?php echo htmlentities($submit['id']) ?>"><?php echo $Email_Id ?></th>
                      <td><?php echo htmlentities($submit['timestamp']) ?></td>
                      <td><?php echo htmlentities($submit['firstname']) ?></td>
                      <td><?php echo htmlentities($submit['lastname']) ?></td>
                      <td><?php echo htmlentities($submit['email']) ?></td>
-                     <td><a href="javascript:void(0)" data-toggle="modal" data-target="#modal<?php echo htmlentities($submit['id']) ?>">Anzeigen</a>&nbsp;&nbsp;<a href="#">
+                     <td>
+                        <a href="javascript:void(0)" data-toggle="modal" data-target="#modal<?php echo htmlentities($submit['id']) ?>">Anzeigen</a>&nbsp;&nbsp;
+                        <a href="#">
                            <form class="contact-delete-form" action="submit.del.php" method="post">
                               <input type="hidden" name="id" value="10">
-                              <button class="btn btn-link" type="submit">
+                              <button class="btn btn-link p-0" type="submit">
                                  <i class="fas fa-trash-alt"></i>
                               </button>
                            </form>
-                        </a></td>
+                        </a>
+                     </td>
                   </tr>
                   <div class="modal fade" id="modal<?php echo htmlentities($submit['id']) ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                      <div class="modal-dialog modal-dialog-scrollable">
@@ -104,8 +113,12 @@
                </tr>
             </thead>
             <tbody>
+               <?php
+               $log_directory = getcwd() . "/../log/";
+               $log_count = count(glob($log_directory . "*.log"));
+               ?>
                <tr>
-                  <th scope="row">0</th>
+                  <th scope="row"><?php echo $log_count + 1 ?></th>
                   <td><?php echo date("j.n.Y") ?></td>
                   <td><?php echo $ip ?></td>
                   <td><?php echo $OS  ?></td>
@@ -124,23 +137,21 @@
                   <td><?php echo $region ?></td>
                </tr>
                <?php
-               $log_directory = getcwd() . "/../log/";
-               $log_count = count(glob($log_directory . "*.log"));
 
-               for ($x = 0; $x <= $log_count - 1; $x++) {
+               for ($x = $log_count - 1; $x >= 0; $x--) {
                   $user = parse_ini_file($log_directory . "log-" . $x . ".log");
-                  echo "<tr>";
-                  echo "<th scope='row'>" . $user['ID'] . "</th>";
-                  echo "<td>" . $user['Date'] . "</td>";
-                  echo "<td>" . $user['IP'] . "</td>";
-                  echo "<td>" . $user['Platform'] . "</td>";
-                  echo "<td>" . $user['Touchdevice'] . "</td>";
-                  echo "<td>" . $user['Language'] . "</td>";
-                  echo "<td>" . $user['Country'] . "</td>";
-                  echo "<td>" . $user['Region'] . "</td>";
-                  echo "</tr>";
-               }
                ?>
+                  <tr id="log-tr-<?php echo $user['ID'] ?>">
+                     <th scope='row'><?php echo $user['ID'] ?></th>
+                     <td><?php echo $user['Date'] ?></td>
+                     <td><?php echo $user['IP'] ?></td>
+                     <td><?php echo $user['Platform'] ?></td>
+                     <td><?php echo $user['Touchdevice'] ?>"</td>
+                     <td><?php echo $user['Language'] ?></td>
+                     <td><?php echo $user['Country'] ?></td>
+                     <td><?php echo $user['Region'] ?></td>
+                  </tr>
+               <?php } ?>
             </tbody>
          </table>
       </div>
@@ -148,6 +159,10 @@
    <script src="http://localhost/lib/jqeury-3.5.1/jquery-3.5.1.min.js"></script>
    <script src="http://localhost/lib/popper/popper.min.js"></script>
    <script src="http://localhost/lib/bootstrap-4.5.3/dist/js/bootstrap.min.js"></script>
+   <script>
+      var logH = <?php echo $log_count ?>
+   </script>
+   <script src="admin.js"></script>
 </body>
 
 </html>
