@@ -4,7 +4,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Logs</title>
+   <title>Admin Menü</title>
    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
    <link rel="preconnect" href="https://fonts.gstatic.com">
    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
@@ -24,6 +24,17 @@
       $stop = null;
    }
 
+   function maxInt($x)
+   {
+      $ini = parse_ini_file("../lang/settings/global.ini");
+      if ($x == "log") {
+         return (int)$ini['MaxLog'];
+      } else if ($x == "submits") {
+         return
+            (int)$ini['MaxContact'];
+      }
+   }
+
    $ipapi = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
 
    if ($ip != $localhost and isset($ipapi)) {
@@ -38,130 +49,26 @@
    $sth = $pdo->prepare("SELECT * FROM `comeg`");
    $sth->execute();
    $submits = $sth->fetchAll();
+
+
+   $target = isset($_GET['target']);
+
+   require("./navbar.php");
+
+
+   if (empty($_GET['target'])) {
+      header("location:?target=none");
+   } else if ($_GET['target'] == 'mails') {
+      require('./email.php');
+   } else if ($_GET['target'] == 'logs') {
+      require("./log.php");
+   }
+
    ?>
-   <section id="contact">
-      <div class="container">
-         <h2 class="title">Email submits</h2>
-         <table class="table">
-            <thead>
-               <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Datum</th>
-                  <th scope="col">Vorname</th>
-                  <th scope="col">Nachname</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Aktion</th>
-               </tr>
-            </thead>
 
-            <tbody>
-               <?php $Email_Id = 1;
-               foreach ($submits as $submit) : ?>
-                  <tr id="submit-tr-<?php echo $Email_Id ?>">
-                     <th scope="row" title="<?php echo htmlentities($submit['id']) ?>"><?php echo $Email_Id ?></th>
-                     <td><?php echo htmlentities($submit['timestamp']) ?></td>
-                     <td><?php echo htmlentities($submit['firstname']) ?></td>
-                     <td><?php echo htmlentities($submit['lastname']) ?></td>
-                     <td><?php echo htmlentities($submit['email']) ?></td>
-                     <td>
-                        <a href="javascript:void(0)" data-toggle="modal" data-target="#modal<?php echo htmlentities($submit['id']) ?>">Anzeigen</a>&nbsp;&nbsp;
-                        <a href="#">
-                           <form class="contact-delete-form" action="submit.del.php" method="post">
-                              <input type="hidden" name="id" value="10">
-                              <button class="btn btn-link p-0" type="submit">
-                                 <i class="fas fa-trash-alt"></i>
-                              </button>
-                           </form>
-                        </a>
-                     </td>
-                  </tr>
-                  <div class="modal fade" id="modal<?php echo htmlentities($submit['id']) ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                     <div class="modal-dialog modal-dialog-scrollable">
-                        <div class="modal-content">
-                           <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel" title="<?php echo htmlentities($submit['id']) ?>">ID: <?php echo $Email_Id ?></h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                 <span aria-hidden="true">&times;</span>
-                              </button>
-                           </div>
-                           <div class="modal-body">
-                              <?php echo htmlentities($submit['text']) ?>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               <?php $Email_Id++;
-               endforeach; ?>
-            </tbody>
-         </table>
-      </div>
-   </section>
-   <section id="log">
-      <div class="container">
-         <h2 class="title">Logs</h2>
-         <table class="table">
-            <thead>
-               <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Datum</th>
-                  <th scope="col">IP-Adresse</th>
-                  <th scope="col">Plattform</th>
-                  <th scope="col">Touchdevice</th>
-                  <th scope="col">Sprache</th>
-                  <th scope="col">Region</th>
-                  <th scope="col">Land</th>
-               </tr>
-            </thead>
-            <tbody>
-               <?php
-               $log_directory = getcwd() . "/../log/";
-               $log_count = count(glob($log_directory . "*.log"));
-               ?>
-               <tr>
-                  <th scope="row"><?php echo $log_count + 1 ?></th>
-                  <td><?php echo date("j.n.Y") ?></td>
-                  <td><?php echo $ip ?></td>
-                  <td><?php echo $OS  ?></td>
-                  <td>
-                     <script>
-                        try {
-                           document.createEvent("TouchEvent");
-                           document.writeln(true);
-                        } catch (e) {
-                           document.writeln(false);
-                        }
-                     </script>
-                  </td>
-                  <td><?php echo substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) ?></td>
-                  <td><?php echo $country ?></td>
-                  <td><?php echo $region ?></td>
-               </tr>
-               <?php
-
-               for ($x = $log_count - 1; $x >= 0; $x--) {
-                  $user = parse_ini_file($log_directory . "log-" . $x . ".log");
-               ?>
-                  <tr id="log-tr-<?php echo $user['ID'] ?>">
-                     <th scope='row'><?php echo $user['ID'] ?></th>
-                     <td><?php echo $user['Date'] ?></td>
-                     <td><?php echo $user['IP'] ?></td>
-                     <td><?php echo $user['Platform'] ?></td>
-                     <td><?php echo $user['Touchdevice'] ?>"</td>
-                     <td><?php echo $user['Language'] ?></td>
-                     <td><?php echo $user['Country'] ?></td>
-                     <td><?php echo $user['Region'] ?></td>
-                  </tr>
-               <?php } ?>
-            </tbody>
-         </table>
-      </div>
-   </section>
    <script src="http://localhost/lib/jqeury-3.5.1/jquery-3.5.1.min.js"></script>
    <script src="http://localhost/lib/popper/popper.min.js"></script>
    <script src="http://localhost/lib/bootstrap-4.5.3/dist/js/bootstrap.min.js"></script>
-   <script>
-      var logH = <?php echo $log_count ?>
-   </script>
    <script src="admin.js"></script>
 </body>
 

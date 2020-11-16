@@ -17,6 +17,7 @@ function load(x, w, k, h) {
       try {
         document.getElementById(w + "-tr-" + parseInt(i)).style.display =
           "table-row";
+        if (i < logM) break;
       } catch (e) {
         break;
       }
@@ -28,5 +29,5 @@ function load(x, w, k, h) {
 
 window.addEventListener("load", () => {
   load(20, "submit", 0);
-  load(0, "log", 1, logH);
+  load(0, "log", 1, logH, logM);
 });
