@@ -17,7 +17,7 @@ function load(x, w, k, h) {
       try {
         document.getElementById(w + "-tr-" + parseInt(i)).style.display =
           "table-row";
-        if (i < logM) break;
+        if (i > logM) break;
       } catch (e) {
         break;
       }

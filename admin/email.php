@@ -29,8 +29,8 @@
                         <td>
                             <a href="javascript:void(0)" data-toggle="modal" data-target="#modal<?php echo htmlentities($submit['id']) ?>">Anzeigen</a>&nbsp;&nbsp;
                             <a href="#">
-                                <form class="contact-delete-form" action="submit.del.php" method="post">
-                                    <input type="hidden" name="id" value="10">
+                                <form class="contact-delete-form" action="submit.php" method="post">
+                                    <input type="hidden" name="id" value="<?php echo  $submit['id'] ?>">
                                     <button class="btn btn-link p-0" type="submit">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
