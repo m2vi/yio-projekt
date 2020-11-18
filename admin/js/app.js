@@ -32,3 +32,41 @@ window.addEventListener("load", () => {
   load(20, "submit", 0);
   load(0, "log", 1, logH, 25);
 });
+
+function takePhoto(id, action) {
+  console.log(id);
+
+  const rid = id;
+  const name = "ID-" + id;
+  id = "#take-photo-" + id;
+
+  if (action == 1) {
+    html2canvas(document.querySelector(id)).then(function (canvas) {
+      console.log(
+        canvas
+          .toDataURL("image/jpeg")
+          .replace("image/jpeg", "image/octet-stream")
+      );
+
+      document
+        .getElementById("hiddenform-" + rid)
+        .setAttribute(
+          "value",
+          canvas
+            .toDataURL("image/jpeg")
+            .replace("image/jpeg", "image/octet-stream")
+        );
+      document.getElementById("hiddenform-" + rid).submit();
+    });
+  } else if (action == 0) {
+    html2canvas(document.querySelector(id)).then(function (canvas) {
+      var a = document.createElement("a");
+      // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+      a.href = canvas
+        .toDataURL("image/jpeg")
+        .replace("image/jpeg", "image/octet-stream");
+      a.download = name + ".png";
+      a.click();
+    });
+  }
+}

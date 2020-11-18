@@ -40,7 +40,7 @@
                     </tr>
                     <div class="modal fade" id="modal<?php echo htmlentities($submit['id']) ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-scrollable">
-                            <div class="modal-content">
+                            <div class="modal-content" id="take-photo-<?php echo $Email_Id ?>">
                                 <div class="modal-header text-center">
                                     <h5 class="modal-title" id="exampleModalLabel" title="<?php echo htmlentities($submit['id']) ?>">ID: <?php echo $Email_Id ?></h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -76,13 +76,32 @@
                                                 </label>
                                             </div>
                                         </form>
-                                        <div class="d-flex justify-content-between mt-4">
-                                            <button type="button" class="btn btn-success" id="save-<?php echo $Email_Id ?>">Save changes</button>
-                                            <form class="contact-delete-form" action="./mail/event/delete.php" method="post">
-                                                <input type="hidden" name="id" value="<?php echo  $submit['id'] ?>">
-                                                <button class="btn btn-link p-0" type="submit">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </button>
+                                        <div class="d-flex mt-4">
+                                            <div class="d-flex justify-content-start">
+                                                <button type="button" class="btn btn-purple" id="save-<?php echo $Email_Id ?>"><i class="far fa-save"></i></button>
+                                                <div class="dropdown">
+                                                    <a type="button" class="btn btn-purple" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fas fa-share"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" href="#" onclick="takePhoto(<?php echo $Email_Id ?>, 1)">Save as PDF</a>
+                                                        <a class="dropdown-item" href="#" onclick="takePhoto(<?php echo $Email_Id ?>, 0)">Save as PNG</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- ./mail/event/share.php -->
+
+                                            <div class="d-flex justify-content-end w-100">
+                                                <form class="contact-delete-form" action="./mail/event/delete.php" method="post">
+                                                    <input type="hidden" name="id" value="<?php echo  $submit['id'] ?>">
+                                                    <button class="btn btn-purple" type="submit">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                            <form id="hiddenform-<?php echo $Email_Id ?>" method="POST" action="./mail/event/share.php">
+                                                <input type="hidden" name="id" value="<?php echo $Email_Id ?>">
+                                                <input type="hidden" name="base64" value="">
                                             </form>
                                         </div>
                                         <?php

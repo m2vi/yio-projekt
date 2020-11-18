@@ -5,7 +5,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Admin Menü</title>
-   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+   <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
    <link rel="preconnect" href="https://fonts.gstatic.com">
    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="../../../lib/fontawesome-free-5.14.0-web/css/all.min.css">
@@ -75,6 +75,7 @@
    <script src="http://localhost/lib/jqeury-3.5.1/jquery-3.5.1.min.js"></script>
    <script src="http://localhost/lib/popper/popper.min.js"></script>
    <script src="http://localhost/lib/bootstrap-4.5.3/dist/js/bootstrap.min.js"></script>
+   <script src="http://localhost/lib/html2canvas/html2canvas.js"></script>
    <script src="./js/app.js"></script>
 </body>
 
