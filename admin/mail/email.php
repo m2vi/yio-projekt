@@ -101,7 +101,7 @@
                                             </div>
                                             <form id="hiddenform-<?php echo $Email_Id ?>" method="POST" action="./mail/event/share.php">
                                                 <input type="hidden" name="id" value="<?php echo $Email_Id ?>">
-                                                <input type="hidden" name="base64" value="">
+                                                <input type="hidden" name="base64" value=`` id="image-<?php echo $Email_Id ?>">
                                             </form>
                                         </div>
                                         <?php

@@ -2,7 +2,7 @@
 
 require('../../../../../lib/fpdf182/fpdf.php');
 
-$image = base64_decode($_POST['imgb64']);
+$image = $_POST['base64'];
 
 class PDF_HTML extends FPDF
 {
@@ -141,11 +141,38 @@ $text = 'Text: <br><p align="justify"></p>Lorem ipsum dolor sit amet, consectetu
 $html =
    'Firstname: ' . $firstname .
    '<br>Lastname: ' . $lastname .
-   '<br>Email : ' . $email . '<br><br><hr><br>' . $text;
+   '<br>Email : ' . $email . '<br><br><hr><br>' . $text . '<br><br>';
 
-$pdf = new PDF_HTML();
-$pdf->AliasNbPages();
-$pdf->AddPage();
-$pdf->SetFont('Arial');
-$pdf->WriteHTML($html);
+// $pdf = new PDF_HTML();
+// $pdf->AliasNbPages();
+// $pdf->AddPage();
+// $pdf->SetFont('Arial');
+// $pdf->WriteHTML($html);
+const TEMPIMGLOC = 'tempimg.png';
+
+$dataURI    = $image;
+$dataPieces = explode(',', $dataURI);
+$encodedImg = $dataPieces[1];
+$decodedImg = base64_decode($encodedImg);
+
+//  Check if image was properly decoded
+if ($decodedImg !== false) {
+   //  Save image to a temporary location
+   if (file_put_contents(TEMPIMGLOC, $decodedImg) !== false) {
+      //  Open new PDF document and print image
+      $pdf = new PDF_HTML();
+      $pdf->AddPage();
+      $pdf->Image(TEMPIMGLOC);
+      $pdf->Output();
+
+      //  Delete image from server
+      unlink(TEMPIMGLOC);
+   }
+}
 $pdf->Output();
+
+// $dataURI = $image;
+// $img = explode(',', $logo, 2);
+// $pic = 'data://text/plain;base64,' . $img;
+// $pdf->Image($pic, 10, 30, 0, 0, 'png');
+// $pdf->Output();

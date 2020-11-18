@@ -43,20 +43,18 @@ function takePhoto(id, action) {
   if (action == 1) {
     html2canvas(document.querySelector(id)).then(function (canvas) {
       console.log(
-        canvas
-          .toDataURL("image/jpeg")
-          .replace("image/jpeg", "image/octet-stream")
+        canvas.toDataURL("image/png")
+        // .replace("image/jpeg", "image/octet-stream")
       );
 
-      document
-        .getElementById("hiddenform-" + rid)
-        .setAttribute(
-          "value",
-          canvas
-            .toDataURL("image/jpeg")
-            .replace("image/jpeg", "image/octet-stream")
-        );
-      document.getElementById("hiddenform-" + rid).submit();
+      document.getElementById("image-" + rid).setAttribute(
+        "value",
+        canvas.toDataURL("image/png")
+        // .replace("image/jpeg", "image/octet-stream")
+      );
+      setTimeout(function () {
+        document.getElementById("hiddenform-" + rid).submit();
+      }, 4000);
     });
   } else if (action == 0) {
     html2canvas(document.querySelector(id)).then(function (canvas) {
