@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="de-DE">
 
 <head>
@@ -55,7 +55,9 @@
 
    $target = isset($_GET['target']);
 
-   require("./content/navbar.php");
+   if ($_GET['target'] != 'none') {
+      require("./content/navbar.php");
+   }
 
 
    if (empty($_GET['target'])) {
@@ -64,10 +66,13 @@
       require('./mail/email.php');
    } else if ($_GET['target'] == 'logs') {
       require("./log/log.php");
+   } else if ($_GET['target'] == 'none') {
+      require("./layout/admin.php");
    }
 
    ?>
 
+   <?php require("./content/footer.php"); ?>
    <script>
       var logH = <?php echo $log_count ?>;
       var logM = <?php echo maxInt("log") ?>;

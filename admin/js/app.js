@@ -68,3 +68,9 @@ function takePhoto(id, action) {
     });
   }
 }
+
+function scrollToAdmin() {
+  $("#admin").scrollTo(500);
+}
+
+$(".btn").click(function () {});
