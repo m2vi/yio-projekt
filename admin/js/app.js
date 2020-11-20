@@ -110,7 +110,7 @@ function openModal(x) {
       );
       break;
     case 8:
-      styleModal(8, "fas fa-list-alt", "Logs");
+      styleModal(8, "fas fa-user", "Profile", "", "#profiles");
       break;
     default:
       return;
