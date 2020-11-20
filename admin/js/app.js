@@ -1,7 +1,7 @@
 // k (0 = not reverse / 1 = reverse)
 // h = start int
 function load(x, w, k, h, r) {
-  if (x === undefined || parseInt(x) === NaN) x = 5;
+  if (x === undefined || parseInt(x) == isNaN()) x = 5;
 
   if (k === 0) {
     for (i = 1; i <= x; i++) {
@@ -28,7 +28,7 @@ function load(x, w, k, h, r) {
   }
 }
 
-window.addEventListener("load", () => {
+window.addEventListener("load", function () {
   load(20, "submit", 0);
   load(0, "log", 1, logH, 25);
 });
@@ -36,8 +36,8 @@ window.addEventListener("load", () => {
 function takePhoto(id, action) {
   console.log(id);
 
-  const rid = id;
-  const name = "ID-" + id;
+  var rid = id;
+  var name = "ID-" + id;
   id = "#take-photo-" + id;
 
   if (action == 1) {
@@ -69,8 +69,97 @@ function takePhoto(id, action) {
   }
 }
 
-function scrollToAdmin() {
-  $("#admin").scrollTo(500);
+function openModal(x) {
+  switch (x) {
+    case 1:
+      styleModal(1, "fas fa-envelope", "Mails", "", "#mails");
+      break;
+    case 2:
+      styleModal(2, "fas fa-list-alt", "Logs", "?target=logs", "#logs");
+      break;
+    case 3:
+      styleModal(3, "fas fa-chart-line", "Statistik", "?target=statistic");
+      break;
+    case 4:
+      styleModal(4, "fas fa-crosshairs", "Ziele", "?target=aim");
+      break;
+
+    case 5:
+      styleModal(
+        5,
+        "fab fa-github",
+        "Git Repository",
+        "https://github.com/iuvoJS/yio-projekt"
+      );
+      break;
+    case 6:
+      styleModal(
+        6,
+        "fas fa-file-code",
+        "Source Code",
+        "?target=sourcecode",
+        "#sourcecode"
+      );
+      break;
+    case 7:
+      styleModal(
+        7,
+        "fas fa-database",
+        "Datenbank",
+        "http://localhost/phpmyadmin/"
+      );
+      break;
+    case 8:
+      styleModal(8, "fas fa-list-alt", "Logs");
+      break;
+    default:
+      return;
+  }
 }
 
-$(".btn").click(function () {});
+function styleModal(classId, icon, text, target, modal) {
+  $(".area-content").addClass("btn-" + classId);
+  $("#icon").html('<i class="' + icon + '"></i>');
+  $("#text").html(text);
+  $("#area").modal("show");
+  if (modal) {
+    $(".inner").attr("onclick", '$("' + modal + '").modal("show")');
+    return;
+  }
+  setTimeout(function () {
+    if ($("#area").hasClass("show")) {
+      document.location = target;
+    }
+  }, 500);
+}
+
+function removeBox() {
+  const classes = [
+    "btn-1",
+    "btn-2",
+    "btn-3",
+    "btn-4",
+    "btn-5",
+    "btn-6",
+    "btn-7",
+    "btn-8",
+  ];
+
+  for (i = 0; i <= 8; i++) {
+    $(".area-content").removeClass(classes[i]);
+  }
+
+  $(".inner").removeAttr("onclick");
+}
+
+$("#area").on("hidden.bs.modal", function () {
+  removeBox();
+  $("body").css({
+    overflow: "visible",
+  });
+});
+$(".submodal").on("hidden.bs.modal", function () {
+  $("body").css({
+    overflow: "hidden",
+  });
+});

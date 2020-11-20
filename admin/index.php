@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+$hash = '$2y$10$V9.VFT2Ul8bVy420GdJ7X.RGC0qBcJ6KUv/yYigjCmeJwXKtbuY4K';
+
+if (!empty($_GET) and isset($_GET['input'])) {
+   if (password_verify($_GET['input'], $hash)) {
+      $_SESSION["access"] = "okay";
+      var_dump($_SESSION);
+   }
+}
+?>
 <!DOCTYPE HTML>
 <html lang="de-DE">
 
@@ -52,27 +64,13 @@
    $sth->execute();
    $submits = $sth->fetchAll();
 
-
-   $target = isset($_GET['target']);
-
-   if ($_GET['target'] != 'none') {
-      require("./content/navbar.php");
-   }
-
-
-   if (empty($_GET['target'])) {
-      header("location:?target=none");
-   } else if ($_GET['target'] == 'mails') {
-      require('./mail/email.php');
-   } else if ($_GET['target'] == 'logs') {
-      require("./log/log.php");
-   } else if ($_GET['target'] == 'none') {
+   if ($_SESSION["access"] == "okay") {
       require("./layout/admin.php");
+   } else {
+      require("");
    }
 
    ?>
-
-   <?php require("./content/footer.php"); ?>
    <script>
       var logH = <?php echo $log_count ?>;
       var logM = <?php echo maxInt("log") ?>;
