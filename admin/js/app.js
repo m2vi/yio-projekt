@@ -31,6 +31,7 @@ function load(x, w, k, h, r) {
 window.addEventListener("load", function () {
   load(20, "submit", 0);
   load(0, "log", 1, logH, 25);
+  AOS.init();
 });
 
 function takePhoto(id, action) {
@@ -158,8 +159,23 @@ $("#area").on("hidden.bs.modal", function () {
     overflow: "visible",
   });
 });
+
+$("#area").on("show.bs.modal", function () {
+  $("body").css({
+    overflow: "hidden",
+  });
+});
+
 $(".submodal").on("hidden.bs.modal", function () {
   $("body").css({
     overflow: "hidden",
   });
 });
+
+$(".submodal").on("show.bs.modal", function () {
+  $("body").css({
+    overflow: "hidden",
+  });
+});
+
+$("#profiles").modal("show");

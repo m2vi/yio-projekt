@@ -8,22 +8,23 @@
    <link rel="stylesheet" href="../../../lib/fontawesome-free-5.14.0-web/css/all.min.css">
    <link rel="stylesheet" href="../../../lib/bootstrap-4.5.3/css/bootstrap.min.css">
    <link rel="stylesheet" href="./css/style.css">
+   <link rel="stylesheet" href="../../../lib/aos-master/aos.css">
 </head>
 
-<body>
+<body style="padding-right: 0;">
    <!-- Admin -->
    <section id="#admin">
       <div class="button-group row m-0">
-         <a class="btn btn-1 col-lg-3 col-md-6 col-12" onclick="openModal(1)"><i class="fas fa-envelope"></i>Mails</a>
-         <a class="btn btn-2 col-lg-3 col-md-6 col-12" onclick="openModal(2)"><i class="fas fa-list-alt"></i>Logs</a>
-         <a class="btn btn-3 col-lg-3 col-md-6 col-12" onclick="openModal(3)"><i class="fas fa-chart-line"></i>Statistik</a>
-         <a class="btn btn-4 col-lg-3 col-md-6 col-12" onclick="openModal(4)"><i class="fas fa-crosshairs"></i>Ziele</a>
+         <a class="btn btn-1 col-lg-3 col-md-6 col-12" onclick="openModal(1)"><span data-aos="fade-up"><i class="fas fa-envelope"></i>Mails</span></a>
+         <a class="btn btn-2 col-lg-3 col-md-6 col-12" onclick="openModal(2)"><span data-aos="fade-up"><i class="fas fa-list-alt"></i>Logs</a>
+         <a class="btn btn-3 col-lg-3 col-md-6 col-12" onclick="openModal(3)"><span data-aos="fade-up"><i class="fas fa-chart-line"></i>Statistik</a>
+         <a class="btn btn-4 col-lg-3 col-md-6 col-12" onclick="openModal(4)"><span data-aos="fade-up"><i class="fas fa-crosshairs"></i>Ziele</a>
       </div>
       <div class="button-group row m-0">
-         <a class="btn btn-5 col-lg-3 col-md-6 col-12" onclick="openModal(5)"><i class="fab fa-github"></i>Git Repository</a>
-         <a class="btn btn-6 col-lg-3 col-md-6 col-12" onclick="openModal(6)"><i class="fas fa-file-code"></i>Source Code</a>
-         <a class="btn btn-7 col-lg-3 col-md-6 col-12" onclick="openModal(7)"><i class="fas fa-database"></i>Datenbank</a>
-         <a class="btn btn-8 col-lg-3 col-md-6 col-12" onclick="openModal(8)"><i class="fas fa-user"></i>Profile</a>
+         <a class="btn btn-5 col-lg-3 col-md-6 col-12" onclick="openModal(5)"><span data-aos="fade-up"><i class="fab fa-github"></i>Git Repository</a>
+         <a class="btn btn-6 col-lg-3 col-md-6 col-12" onclick="openModal(6)"><span data-aos="fade-up"><i class="fas fa-file-code"></i>Source Code</a>
+         <a class="btn btn-7 col-lg-3 col-md-6 col-12" onclick="openModal(7)"><span data-aos="fade-up"><i class="fas fa-database"></i>Datenbank</a>
+         <a class="btn btn-8 col-lg-3 col-md-6 col-12" onclick="openModal(8)"><span data-aos="fade-up"><i class="fas fa-user"></i>Profile</a>
       </div>
       <div class="button-lg">
          <button class="btn" onclick="window.location.href='?logout'">log out</button>
@@ -303,7 +304,7 @@
          </div>
       </div>
    </div>
-   <!-- Sourcecode -->
+   <!--Profile Editor -->
    <div class="modal submodal fade p-0" id="profiles" data-backdrop="false" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-sm">
          <div class="modal-content content-sm btn-8">
@@ -313,29 +314,51 @@
                </svg>
             </button>
             <div class="container">
-               <?php
-               // $user = "hello";
-               // $pass = "root";
+               <div class="row profiles">
+                  <div class="profile profile-1 col-lg-6 col-12">
+                     <div class="profile-header">
+                        <p>user: root</p>
+                     </div>
+                     <div class="profile-body">
+                        <div>
+                           <p><span>user: </span>root</p>
+                           <p><span>password: </span>
+                              <a href="javascript:void(0)">
+                                 hidden <small>(edit)</small>
+                              </a>
+                              <input type="password">
+                           </p>
+                        </div>
+                        <div>
+                           <p><span>Client IP:</span> 1.1.1.1</p>
+                           <p><span>Created:</span> 21.01.2001</p>
+                           <p><span>Last login:</span> 21.01.2001</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- <?php
+                     // $user = "hello";
+                     // $pass = "root";
 
-               // require("../php/connections/profiles.php");
-               // $sql = "INSERT INTO `profiles` (`user`, `pass`) VALUES (:user, :pass)";
-               // $query = $pdo->prepare($sql);
-               // $query->bindParam(':user', $user);
-               // $query->bindParam(':pass', $pass);
-               // $query->execute();
-               ?>
+                     // require("../php/connections/profiles.php");
+                     // $sql = "INSERT INTO `profiles` (`user`, `pass`) VALUES (:user, :pass)";
+                     // $query = $pdo->prepare($sql);
+                     // $query->bindParam(':user', $user);
+                     // $query->bindParam(':pass', $pass);
+                     // $query->execute();
+                     ?> -->
             </div>
          </div>
       </div>
-   </div>
-
-   <script>
-      var logH = <?php echo $log_count ?>;
-      var logM = <?php echo maxInt("log") ?>;
-   </script>
-   <script src="http://localhost/lib/jqeury-3.5.1/jquery-3.5.1.min.js"></script>
-   <script src="http://localhost/lib/popper/popper.min.js"></script>
-   <script src="http://localhost/lib/bootstrap-4.5.3/dist/js/bootstrap.min.js"></script>
-   <script src="http://localhost/lib/html2canvas/html2canvas.js"></script>
-   <script src="./js/app.js"></script>
+      <script>
+         var logH = <?php echo $log_count ?>;
+         var logM = <?php echo maxInt("log") ?>;
+      </script>
+      <script src="../../../lib/aos-master/aos.js"></script>
+      <script src="http://localhost/lib/jqeury-3.5.1/jquery-3.5.1.min.js"></script>
+      <script src="http://localhost/lib/popper/popper.min.js"></script>
+      <script src="http://localhost/lib/bootstrap-4.5.3/dist/js/bootstrap.min.js"></script>
+      <script src="http://localhost/lib/html2canvas/html2canvas.js"></script>
+      <script src="./js/app.js"></script>
 </body>
