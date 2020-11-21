@@ -34,42 +34,6 @@ window.addEventListener("load", function () {
   AOS.init();
 });
 
-function takePhoto(id, action) {
-  console.log(id);
-
-  var rid = id;
-  var name = "ID-" + id;
-  id = "#take-photo-" + id;
-
-  if (action == 1) {
-    html2canvas(document.querySelector(id)).then(function (canvas) {
-      console.log(
-        canvas.toDataURL("image/png")
-        // .replace("image/jpeg", "image/octet-stream")
-      );
-
-      document.getElementById("image-" + rid).setAttribute(
-        "value",
-        canvas.toDataURL("image/png")
-        // .replace("image/jpeg", "image/octet-stream")
-      );
-      setTimeout(function () {
-        document.getElementById("hiddenform-" + rid).submit();
-      }, 4000);
-    });
-  } else if (action == 0) {
-    html2canvas(document.querySelector(id)).then(function (canvas) {
-      var a = document.createElement("a");
-      // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
-      a.href = canvas
-        .toDataURL("image/jpeg")
-        .replace("image/jpeg", "image/octet-stream");
-      a.download = name + ".png";
-      a.click();
-    });
-  }
-}
-
 function openModal(x) {
   switch (x) {
     case 1:
@@ -119,35 +83,53 @@ function openModal(x) {
 }
 
 function styleModal(classId, icon, text, target, modal) {
+  // Styles the modal with the appropriate colors
   $(".area-content").addClass("btn-" + classId);
+  // Adds the appropriate icon
   $("#icon").html('<i class="' + icon + '"></i>');
+  // Adds the appropriate text
   $("#text").html(text);
+  // Shows the modal
   $("#area").modal("show");
+  // If the variable modal exists
   if (modal) {
+    // Adds to the class inner the attribute onclick (If user clicks on main modal, show submodal)
     $(".inner").attr("onclick", '$("' + modal + '").modal("show")');
+    // Ends the function
     return;
   }
+  // *Wait 0.5s than start function
   setTimeout(function () {
-    if ($("#area").hasClass("show")) {
-      document.location = target;
-    }
+    // If the main modal is still shown, change the current location to the variable target
+    $("#area").hasClass("show") && (document.location = target);
+    // *
   }, 500);
 }
 
 function removeBox() {
+  // These are the classes that were specified in CSS
   const classes = [
+    // .btn-1
     "btn-1",
+    // .btn-2
     "btn-2",
+    // .btn-3
     "btn-3",
+    // .btn-4
     "btn-4",
+    // .btn-5
     "btn-5",
+    // .btn-6
     "btn-6",
+    // .btn-7
     "btn-7",
+    // .btn-8
     "btn-8",
   ];
-
-  for (i = 0; i <= 8; i++) {
-    $(".area-content").removeClass(classes[i]);
+  // Repeat the function till every button got removed
+  for (i = 0; i <= classes.length; i++) {
+    // Removes the class
+    $(".area-content").removeClass("btn-" + i);
   }
 
   $(".inner").removeAttr("onclick");
@@ -160,6 +142,7 @@ $("#area").on("hidden.bs.modal", function () {
   });
 });
 
+// Overflow hidden when main modal get's opened
 $("#area").on("show.bs.modal", function () {
   $("body").css({
     overflow: "hidden",
@@ -167,15 +150,20 @@ $("#area").on("show.bs.modal", function () {
 });
 
 $(".submodal").on("hidden.bs.modal", function () {
-  $("body").css({
-    overflow: "hidden",
-  });
+  // If area modal is open
+  $("#area").hasClass("show")
+    ? // If the area modal **is** open do when closing the submodal:
+      $("body").css({ overflow: "hidden" })
+    : //If the area modal **isn't** open do when closing the submodal:
+      $("body").css({ overflow: "visible" });
 });
 
+// This function is required because the submodal is opened directly in some cases
 $(".submodal").on("show.bs.modal", function () {
   $("body").css({
     overflow: "hidden",
   });
 });
 
+// Debug only
 $("#profiles").modal("show");
