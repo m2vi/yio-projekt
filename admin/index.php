@@ -1,6 +1,8 @@
 <?php
 session_start();
-
+if (isset($_POST['user']) and empty($_POST['user']) or isset($_POST['input']) and empty($_POST['input'])) {
+   header('Location: ../admin/?code=411');
+}
 if (!empty($_POST) and isset($_POST['user']) and !empty($_POST['user']) and isset($_POST['input']) and !empty($_POST['input'])) {
    $user = $_POST['user'];
    $pass = $_POST['input'];
@@ -8,10 +10,12 @@ if (!empty($_POST) and isset($_POST['user']) and !empty($_POST['user']) and isse
    $sth = $pdo->prepare("SELECT * FROM `profiles` WHERE `user` = :user");
    $sth->bindParam(':user', $user, PDO::PARAM_STR);
    $sth->execute();
+
    $profile = $sth->fetch();
-   if (empty($profile)) {
-      $_SESSION["access"] = "denied";
-   } else if (password_verify($pass, $profile['pass'])) {
+   if (!$profile) {
+      header('Location: ../admin/?code=403');
+   }
+   if (password_verify($pass, $profile['pass'])) {
       $_SESSION["access"] = "okay";
    }
 }

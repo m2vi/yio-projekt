@@ -116,10 +116,17 @@ function removeBox() {
   $(".inner").removeAttr("onclick");
 }
 
+function AOSReload() {
+  setTimeout(function () {
+    $(".aos-init").removeClass("aos-init aos-animate");
+  }, 200);
+}
+
 // When the user closes the modal, scrolling is reactivated
 $("#area").on("hidden.bs.modal", function () {
   // Start function removeBox()
   removeBox();
+  AOS.refresh();
   $("body").css({
     overflow: "visible",
   });
@@ -130,6 +137,7 @@ $("#area").on("show.bs.modal", function () {
   $("body").css({
     overflow: "hidden",
   });
+  AOSReload();
 });
 
 $(".submodal").on("hidden.bs.modal", function () {
@@ -152,3 +160,11 @@ $(".submodal").on("show.bs.modal", function () {
 
 // Debug only
 $("#profiles").modal("show");
+
+// document.addEventListener(
+//   "contextmenu",
+//   function (e) {
+//     e.preventDefault();
+//   },
+//   false
+// );

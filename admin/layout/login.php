@@ -20,15 +20,18 @@
 
 
             <?php
-            if (isset($_POST['user'])) { ?>
+            if (isset($_GET['code'])) { ?>
                <hr>
                <div class="error">
                   Login failed
-                  <span class="code">401</span>
+                  <span class="code"><?php echo $_GET['code'] ?></span>
                </div>
             <?php }
             ?>
          </form>
       </div>
    </div>
+   <script>
+      window.history.replaceState(null, null, window.location.pathname);
+   </script>
 </body>
