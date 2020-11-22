@@ -1,18 +1,24 @@
 <?php
 session_start();
 
-// hash = root
-$hash = '$2y$10$V9.VFT2Ul8bVy420GdJ7X.RGC0qBcJ6KUv/yYigjCmeJwXKtbuY4K';
-
-if (!empty($_POST) and isset($_POST['input'])) {
-   if (password_verify($_POST['input'], $hash)) {
+if (!empty($_POST) and isset($_POST['user']) and !empty($_POST['user']) and isset($_POST['input']) and !empty($_POST['input'])) {
+   $user = $_POST['user'];
+   $pass = $_POST['input'];
+   require("../php/connections/profiles.php");
+   $sth = $pdo->prepare("SELECT * FROM `profiles` WHERE `user` = :user");
+   $sth->bindParam(':user', $user, PDO::PARAM_STR);
+   $sth->execute();
+   $profile = $sth->fetch();
+   if (empty($profile)) {
+      $_SESSION["access"] = "denied";
+   } else if (password_verify($pass, $profile['pass'])) {
       $_SESSION["access"] = "okay";
    }
 }
 
+
 if (isset($_GET['logout']) and session_status() != PHP_SESSION_NONE) {
    session_destroy();
-   setcookie("PHPSESSID", "", time() - 3600, "/");
    header('Location: ../admin/');
 }
 
@@ -52,11 +58,6 @@ require("../php/connections/comeg.php");
 $sth = $pdo->prepare("SELECT * FROM `comeg`");
 $sth->execute();
 $submits = $sth->fetchAll();
-
-require("../php/connections/profiles.php");
-$sth = $pdo->prepare("SELECT * FROM `profiles`");
-$sth->execute();
-$profiles = $sth->fetchAll();
 ?>
 <!DOCTYPE HTML>
 <html lang="de-DE">

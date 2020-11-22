@@ -321,6 +321,7 @@
                      </div>
                      <div class="profile-body">
                         <div>
+                           <p><span>id: </span>1</p>
                            <p><span>user: </span>root</p>
                            <p><span>password: </span>
                               <a href="javascript:void(0)">

@@ -107,35 +107,18 @@ function styleModal(classId, icon, text, target, modal) {
 }
 
 function removeBox() {
-  // These are the classes that were specified in CSS
-  const classes = [
-    // .btn-1
-    "btn-1",
-    // .btn-2
-    "btn-2",
-    // .btn-3
-    "btn-3",
-    // .btn-4
-    "btn-4",
-    // .btn-5
-    "btn-5",
-    // .btn-6
-    "btn-6",
-    // .btn-7
-    "btn-7",
-    // .btn-8
-    "btn-8",
-  ];
-  // Repeat the function till every button got removed
-  for (i = 0; i <= classes.length; i++) {
+  // Repeats the function till every button got removed
+  for (i = 0; i <= 8; i++) {
     // Removes the class
     $(".area-content").removeClass("btn-" + i);
   }
-
+  // Removes the onclick attribute
   $(".inner").removeAttr("onclick");
 }
 
+// When the user closes the modal, scrolling is reactivated
 $("#area").on("hidden.bs.modal", function () {
+  // Start function removeBox()
   removeBox();
   $("body").css({
     overflow: "visible",
@@ -151,14 +134,16 @@ $("#area").on("show.bs.modal", function () {
 
 $(".submodal").on("hidden.bs.modal", function () {
   // If area modal is open
-  $("#area").hasClass("show")
-    ? // If the area modal **is** open do when closing the submodal:
-      $("body").css({ overflow: "hidden" })
-    : //If the area modal **isn't** open do when closing the submodal:
-      $("body").css({ overflow: "visible" });
+  $("#area").hasClass("show") // If the area modal **is** open do when closing the submodal:
+    ? $("body").css({
+        overflow: "hidden",
+      }) //If the area modal **isn't** open do when closing the submodal:
+    : $("body").css({
+        overflow: "visible",
+      });
 });
 
-// This function is required because the submodal is opened directly in some cases
+//! This function is required because the submodal is opened directly in some cases
 $(".submodal").on("show.bs.modal", function () {
   $("body").css({
     overflow: "hidden",
