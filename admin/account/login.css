@@ -25,7 +25,7 @@ body {
   max-width: 360px;
   margin: 0 auto 100px;
   padding: 45px;
-  text-align: center;
+  text-align: right;
   box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
 }
 
@@ -41,7 +41,7 @@ body {
   background: #f2f2f2;
   width: 100%;
   border: 0;
-  /* margin: 0 0 15px; */
+  margin: 0 0 15px;
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
@@ -72,10 +72,15 @@ body {
   background: #FFA500;
 }
 
+.form input[name="password"],
+.form input[name="hash"] {
+  margin: 0;
+}
+
 .form .message {
-  margin: 1rem 0 0;
   color: #b3b3b3;
   font-size: 12px;
+  margin: 2px 0 15px;
 }
 
 .form .message a {
@@ -90,32 +95,21 @@ hr {
   margin: 1rem 0;
 }
 
-.error {
-  color: rgb(214, 0, 0);
-  font-size: 14px;
-  display: inline-block;
-  position: relative;
-}
-
-.error .code {
-  font-weight: bold;
-}
-
-.input-error {
-  color: red !important;
-  background-image: url("error.svg") !important;
-  background-repeat: no-repeat !important;
-  background-position: right calc(.375em + .1875rem) center !important;
-  background-size: calc(.75em + .375rem) calc(.75em + .375rem) !important;
-}
-
-.user-code,
-.password-code {
-  color: red;
-  font-size: 14px;
+.toggle-other {
+  color: #FFA500;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 12px;
   margin: 0;
   padding: 0;
-  text-align: left;
-  width: 100%;
-  margin: 3px 0 15px;
+  cursor: pointer;
+}
+
+.add {
+  display: block;
+}
+
+.edit {
+  display: none;
 }

@@ -29,6 +29,20 @@
       <div class="button-lg">
          <button class="btn" onclick="window.location.href='?logout'">log out</button>
       </div>
+      <footer>
+         <div>
+            <span>Eingeloggt als: </span><?php echo $_SESSION["user"] ?>
+         </div>
+         <div>
+            <span>Client IP: </span><?php echo $ip ?>
+         </div>
+         <div>
+            <span>Erstellungsdatum: </span><?php echo $profile['timestamp'] ?>
+         </div>
+         <div>
+            <span>Letzter Login: </span><?php echo $_SESSION['last'] ?>
+         </div>
+      </footer>
    </section>
 
    <div class="modal mainmodal fade p-0" id="area" data-backdrop="false" tabindex="-1" aria-hidden="true">

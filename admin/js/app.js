@@ -159,7 +159,7 @@ $(".submodal").on("show.bs.modal", function () {
 });
 
 // Debug only
-$("#profiles").modal("show");
+// $("#profiles").modal("show");
 
 // document.addEventListener(
 //   "contextmenu",
