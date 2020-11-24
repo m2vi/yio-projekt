@@ -6,6 +6,12 @@ body {
   font-weight: 300;
 }
 
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 .login-page {
   width: 360px;
   padding: 8% 0 0;
@@ -51,6 +57,23 @@ body {
   opacity: 0.5;
 }
 
+
+option {
+  background-color: #f2f2f2;
+}
+
+option:hover {
+  background-color: #ffa500;
+}
+
+option:checked {
+  display: none;
+}
+
+option[disabled][selected] {
+  display: none;
+}
+
 .form button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
@@ -75,6 +98,21 @@ body {
 .form input[name="password"],
 .form input[name="hash"] {
   margin: 0;
+}
+
+.form select[name="user"] {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  border: 0;
+  width: 100%;
+  margin: 0 0 15px;
+  padding: 15px;
+  font-size: 14px;
+  background: #f2f2f2;
+}
+
+*:focus {
+  outline: none;
 }
 
 .form .message {
@@ -104,12 +142,12 @@ hr {
   margin: 0;
   padding: 0;
   cursor: pointer;
+  text-decoration: none;
 }
 
-.add {
-  display: block;
-}
-
-.edit {
-  display: none;
+.delete {
+  margin-top: 5px;
+  background-color: rgb(255, 34, 34) !important;
+  height: 25px;
+  padding: 0 !important;
 }

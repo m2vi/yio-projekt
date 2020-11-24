@@ -6,7 +6,7 @@ $sth->execute();
 $submits = $sth->fetchAll();
 
 require("../php/connections/profiles.php");
-session_name('SessionID');
+session_name(strtoupper('YioSessionId'));
 session_start();
 if (isset($_POST['user']) and empty($_POST['user']) or isset($_POST['input']) and empty($_POST['input'])) {
    header('Location: ../admin/?code=411');
