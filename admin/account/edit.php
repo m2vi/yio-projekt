@@ -1,28 +1,10 @@
-<?php
-require("../../php/connections/profiles.php");
-
-if (isset($_POST['user']) and isset($_POST['password']) or isset($_POST['hash'])) {
-    $user = strtolower($_POST['user']);
-
-    if (isset($_POST['password']) and !isset($_POST['hash'])) {
-        $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    } else if (isset($_POST['hash']) and !isset($_POST['password'])) {
-        $pass = $_POST['hash'];
-    } else {
-        // error
-    }
-
-    $timestamp = date("j.n.Y");
-}
-
-?>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit</title>
-    <link href="./login.css" rel="stylesheet">
+    <title>Coming soon...</title>
+    <link href="./edit.css" rel="stylesheet">
     <link rel="shortcut icon" href="edit.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../../../lib/fontawesome-free-5.14.0-web/css/all.min.css">
 </head>
 
 <body>
@@ -37,16 +19,19 @@ if (isset($_POST['user']) and isset($_POST['password']) or isset($_POST['hash'])
                     $usernames = $sth->fetchAll();
                     $userall = array();
                     foreach ($usernames as $username) {
-                    ?>
+                        array_push($userall, $username['user']); ?>
                         <option value="<?php echo $username["user"] ?>"><?php echo $username["user"] ?></option>
                     <?php
                     }
                     ?>
                 </select>
+                <input type="text" placeholder="name" name="name" />
                 <input type="text" class="pass" placeholder="new password" name="password" />
                 <p class="message">Use <a href="javascript:void(0)" class="toggle-hash">Hash</a> instead</p>
-                <button type="submit">Edit user</button>
-                <button type="button" class="delete">Delete</button>
+                <div class="button-group">
+                    <button type="submit">Edit user</button>
+                    <button type="button" class="delete"><i class="fas fa-trash"></i></button>
+                </div>
                 <a class="toggle-other" href="?target=add">Add user</a>
             </form>
         </div>

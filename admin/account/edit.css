@@ -78,7 +78,7 @@ option[disabled][selected] {
   text-transform: uppercase;
   outline: 0;
   background: #FFA500;
-  width: 100%;
+  width: 80%;
   border: 0;
   padding: 15px;
   color: #FFFFFF;
@@ -88,8 +88,19 @@ option[disabled][selected] {
   cursor: pointer;
 }
 
+/* .form button:not(.delete) {
+  padding-left: calc(15px + 20%) !important;
+} */
+
 .button-group {
   display: flex;
+}
+
+.delete {
+  width: 20% !important;
+  padding: 0 !important;
+  background-color: #ffa500 !important;
+  border-left: 1px solid #fff !important;
 }
 
 

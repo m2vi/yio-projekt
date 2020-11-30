@@ -1,4 +1,7 @@
 <?php
+
+// o6pmL9HabCdp
+
 require("../../php/connections/profiles.php");
 
 if (isset($_POST['user']) and isset($_POST['password']) or isset($_POST['hash'])) {
@@ -12,25 +15,29 @@ if (isset($_POST['user']) and isset($_POST['password']) or isset($_POST['hash'])
       // error
    }
 
-   $timestamp = date("j.n.Y");
+   if (isset($_POST['firstname']) and !empty($_POST['firstname'])) {
+      $firstname = $_POST['firstname'];
+   } else {
+      // error
+   }
 
-   $sth = $pdo->prepare("SELECT * FROM `profiles`");
+   $sth = $pdo->prepare("SELECT user FROM `profiles` WHERE user = :user");
+   $sth->bindParam(':user', $user, PDO::PARAM_STR);
    $sth->execute();
-   $usernames = $sth->fetchAll();
-   $userall = array();
-   foreach ($usernames as $username) {
-      array_push($userall, $username['user']);
-   }
-   if (in_array($user, $userall)) {
+   $usernames = $sth->fetch();
+   if (in_array($user, $usernames)) {
       header('Location: ../account/?e=uae');
-      die();
+      die("user already exists");
    }
 
-   $sth = $pdo->prepare("INSERT INTO `profiles` (`timestamp`, `last`, `user`, `pass`) VALUES (:timestamp, '-', :user, :pass)");
+   $sth = $pdo->prepare("INSERT INTO `profiles` (`timestamp`, `last`, `user`, `pass`, `firstname`) VALUES (:timestamp, '-', :user, :pass, :firstname)");
+   $timestamp = date("j.n.Y");
    $sth->bindParam(':timestamp', $timestamp, PDO::PARAM_STR);
    $sth->bindParam(':user', $user, PDO::PARAM_STR);
    $sth->bindParam(':pass', $pass, PDO::PARAM_STR);
-   // $sth->execute();
+   $sth->bindParam(':firstname', $firstname, PDO::PARAM_STR);
+   $sth->execute();
+   header('Location: ../account/?target=add');
 }
 
 ?>
@@ -47,6 +54,7 @@ if (isset($_POST['user']) and isset($_POST['password']) or isset($_POST['hash'])
    <div class="login-page">
       <div class="form add">
          <form class="login-form" method="post" action="">
+            <input type="text" placeholder="firstname" name="firstname" />
             <input type="text" placeholder="username" name="user" />
             <input type="text" class="pass" placeholder="password" name="password" />
             <p class="message">Use <a href="javascript:void(0)" class="toggle-hash">Hash</a> instead</p>

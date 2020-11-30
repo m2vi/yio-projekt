@@ -1,5 +1,7 @@
 .demo {
-  background-color: $black;
+  background: url("../img/demo-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   min-height: 100vh;
   padding-top: 20px;
   padding-bottom: 20px;
