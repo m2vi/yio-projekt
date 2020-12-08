@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 
   .container-sm {
     display: flex;
@@ -15,6 +16,13 @@
     align-items: center;
     height: 100% !important;
     padding: 10rem;
+
+    .play {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+    }
   }
 
   @include media-breakpoint-down(sm) {

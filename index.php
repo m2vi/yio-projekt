@@ -74,6 +74,7 @@ require("../../lib/LOG/log.php")
             <ul class="nav navbar-nav">
                 <li class="nav-item"><a class="nav-link active" href="#top" home><?php echo $nav->home ?></a></li>
                 <li class="nav-item"><a class="nav-link" href="#about"><?php echo $nav->about ?></a></li>
+                <li class="nav-item"><a class="nav-link" href="#member"><?php echo $nav->member ?></a></li>
                 <li class="nav-item"><a class="nav-link" href="#demo"><?php echo $nav->demo ?></a></li>
                 <li class="nav-item"><a class="nav-link" href="#download"><?php echo $nav->download ?></a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact" contact><?php echo $nav->contact ?></a></li>
@@ -249,8 +250,105 @@ require("../../lib/LOG/log.php")
             </div>
         </div>
     </section>
+    <section class="member" id="member">
+        <div class="container">
+            <div class="member-text col-12 col-md-4">
+                <h1>team</h1>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ab consectetur ipsum quibusdam, natus, unde accusamus reprehenderit laudantium officia odio totam? Incidunt recusandae aliquam ipsa sapiente repellendus non nihil quas.</p>
+            </div>
+            <div id="carouselExampleControls" class="carousel slide col-12 col-md-8" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item">
+                        <div class="members">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="card mb-4">
+                                        <img class="card-img-top" src="img/placeholder/400x400.png" alt="Platzhalter-Bild">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-center">Level 2</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted text-center">Description of the level</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card mb-4">
+                                        <img class="card-img-top" src="img/placeholder/400x400.png" alt="Platzhalter-Bild">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-center">Level 3</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted text-center">Description of the level</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item active">
+                        <div class="members">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="card mb-4">
+                                        <img class="card-img-top" src="img/team/m2v.png" alt="Platzhalter-Bild">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-center">m2v</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted text-center">Webdev, Database Administrator</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card mb-4">
+                                        <img class="card-img-top" src="img/team/zero.png" alt="Platzhalter-Bild">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-center">zero</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted text-center">App Developer</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="members">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="card mb-4">
+                                        <img class="card-img-top" src="img/placeholder/400x400.png" alt="Platzhalter-Bild">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-center">Selale</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted text-center">Designer</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card mb-4">
+                                        <img class="card-img-top" src="img/placeholder/400x400.png" alt="Platzhalter-Bild">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-center">Level 3</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted text-center">Description of the level</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#member" role="button">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#member" role="button">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </section>
     <section class="demo" id="demo">
-        <div class="container-sm">
+        <div class="container-sm flex-column">
+            <div class="play">
+                <svg width="10rem" height="10rem" viewBox="0 0 16 16" class="bi bi-play" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z" />
+                </svg>
+            </div>
             <div class="embed-responsive yio-demo">
                 <!-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Q3Kvu6Kgp88?autoplay=0&showinfo=0&controls=0"></iframe> -->
             </div>
@@ -494,5 +592,7 @@ require("../../lib/LOG/log.php")
 
             Coded by m2v
             Discord: m2v#7180
+
+            Zero can't code ngl
 
     ~~~~~~~~~~~~~~~~~~-->

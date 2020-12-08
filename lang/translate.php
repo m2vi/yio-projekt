@@ -42,6 +42,7 @@ class Navbar
    public $home;
    public $about;
    public $demo;
+   public $member;
    public $download;
    public $contact;
 }
@@ -157,6 +158,7 @@ $cookie->decline = $ini['cookie-decline'];
 //? NAVBAR
 $nav->home = $ini['n-home'];
 $nav->about = $ini['n-about'];
+$nav->member = $ini['n-member'];
 $nav->demo = $ini['n-demo'];
 $nav->download = $ini['n-download'];
 $nav->contact = $ini['n-contact'];

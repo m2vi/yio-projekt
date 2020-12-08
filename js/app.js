@@ -30,6 +30,7 @@ $('a[href*="#"]')
   // Remove links that don't actually link to anything
   .not('[href="#"]')
   .not('[href="#0"]')
+  .not('[href="javascript:void(0);"]')
   .click(function (event) {
     // On-page links
     if (
@@ -348,6 +349,17 @@ function version() {
   }
 }
 
+//?   ***********
+//?
+//?
+
+$(".carousel").carousel();
+$(".carousel-control-prev").click(function () {
+  $(".carousel").carousel("prev");
+});
+$(".carousel-control-next").click(function () {
+  $(".carousel").carousel("next");
+});
 //?   ******************
 //?   *      DEMO      *
 //?   ******************
