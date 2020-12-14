@@ -13,10 +13,9 @@ $en = './lang/settings/settings.en.ini';
 $it = './lang/settings/settings.it.ini';
 $de = './lang/settings/settings.de.ini';
 
-$AcceptLang = ['en', 'de', 'it'];
+$AcceptLang = explode(",", preg_replace('/ /', "", $global['AcceptedLanguages']));
 
 if (isset($_COOKIE['lang'])) {
-
    $lang = $_COOKIE['lang'];
 
    if ($lang == "EN" and verifyLang($en)) {

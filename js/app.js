@@ -192,34 +192,36 @@ function getCookie(p) {
   return null;
 }
 
+//! Moved to server side
+
 // If the Cookie for the language doesn't exist, create one with the language the Navigator has
-// * UK = English
-// TODO: Currently AT = DE, make AT = AT
-function checkLang() {
-  var nv = navigator.language.toLowerCase();
+// // * UK = English
+// // TODO: Currently AT = DE, make AT = AT
+// function checkLang() {
+//   var nv = navigator.language.toLowerCase();
 
-  var en = ["en-EN", "en"];
-  var de = ["de-DE", "de"];
-  var at = ["de-AT", "at"];
-  var it = ["it-IT", "it"];
+//   var en = ["en-EN", "en"];
+//   var de = ["de-DE", "de"];
+//   var at = ["de-AT", "at"];
+//   var it = ["it-IT", "it"];
 
-  // if (getCookie("lang") == null) {
-  //   if (en.includes(nv)) {
-  //     cookieLang("UK");
-  //   } else if (nv.includes(de)) {
-  //     cookieLang("DE");
-  //   } else if (nv.includes(at)) {
-  //     cookieLang("DE"); // TODO: Austrian
-  //   } else if (nv.includes(it)) {
-  //     cookieLang("IT");
-  //   } else {
-  //     cookieLang("UK");
-  //   }
-  // }
-}
-function cookieLang(x) {
-  cCookie("lang", x, 1, "l");
-}
+//   if (getCookie("lang") == null) {
+//     if (en.includes(nv)) {
+//       cookieLang("UK");
+//     } else if (nv.includes(de)) {
+//       cookieLang("DE");
+//     } else if (nv.includes(at)) {
+//       cookieLang("DE"); // TODO: Austrian
+//     } else if (nv.includes(it)) {
+//       cookieLang("IT");
+//     } else {
+//       cookieLang("UK");
+//     }
+//   }
+// }
+// function cookieLang(x) {
+//   cCookie("lang", x, 1, "l");
+// }
 
 // If the Cookie "AcceptCookie" doesn't exist show the Div
 if (getCookie("AcceptCookie") === null) {
