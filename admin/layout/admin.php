@@ -366,14 +366,32 @@
             </div>
          </div>
       </div>
-      <script>
-         var logH = <?php echo $log_count ?>;
-         var logM = <?php echo maxInt("log") ?>;
-      </script>
-      <script src="../../../lib/aos-master/aos.js"></script>
-      <script src="http://localhost/lib/jqeury-3.5.1/jquery-3.5.1.min.js"></script>
-      <script src="http://localhost/lib/popper/popper.min.js"></script>
-      <script src="http://localhost/lib/bootstrap-4.5.3/dist/js/bootstrap.min.js"></script>
-      <script src="http://localhost/lib/html2canvas/html2canvas.js"></script>
-      <script src="./js/app.js"></script>
+   </div>
+   <div class="control">
+      <?php
+      if (isset($_GET['delete'])) {
+         $log_files = $log_directory . "log-";
+
+         for ($i = 0; $i <= count(scandir($log_directory)); $i++) {
+            $target = $log_files . $i . ".log";
+            echo $target . "\n";
+            if (file_exists($target)) {
+               unlink($target);
+            } else {
+               // File not found.
+            }
+         }
+      }
+      ?>
+   </div>
+   <script>
+      var logH = <?php echo $log_count ?>;
+      var logM = <?php echo maxInt("log") ?>;
+   </script>
+   <script src="../../../lib/aos-master/aos.js"></script>
+   <script src="http://localhost/lib/jqeury-3.5.1/jquery-3.5.1.min.js"></script>
+   <script src="http://localhost/lib/popper/popper.min.js"></script>
+   <script src="http://localhost/lib/bootstrap-4.5.3/dist/js/bootstrap.min.js"></script>
+   <script src="http://localhost/lib/html2canvas/html2canvas.js"></script>
+   <script src="./js/app.js"></script>
 </body>

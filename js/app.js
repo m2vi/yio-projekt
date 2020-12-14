@@ -4,8 +4,7 @@
 
 // Function after everything is loaded
 $(document).ready(function () {
-  PlatformInUrl();
-  MakeGoogleMapsHref("adress");
+  InfoForLog();
   scrollFunction();
   version();
   demo();
@@ -68,13 +67,9 @@ $('a[href*="#"]')
     }
   });
 
-function PlatformInUrl() {
-  if (
-    window.location.href.indexOf(navigator.platform) <= -1 ||
-    window.location.href.indexOf("TouchDevice") <= -1
-  ) {
-    window.location.href =
-      "?platform=" + navigator.platform + "&TouchDevice=" + is_touch_device();
+function InfoForLog() {
+  if (getCookie("not_trusted") === null && typeof doCNT === "string") {
+    cCookie("not_trusted", navigator.platform + "`#`" + is_touch_device(), 1);
   }
 }
 
@@ -143,8 +138,8 @@ function LinksFrom() {
 //?   ******************
 
 // Create a Cookie
-// * Format: Cookiename, Content, Expire (in years and INT)
-function cCookie(n, c, e) {
+// * Format: Cookiename, Content, Expire (in years and INT), type (checks if the cookie is for the language)
+function cCookie(n, c, e, t) {
   // If e is undefined, set it to 1 year
   if (e === undefined) e = 1;
   // Get the Int in E
@@ -155,8 +150,14 @@ function cCookie(n, c, e) {
   CookieEx.setFullYear(CookieEx.getFullYear() + e);
   // Convert to UTC
   CookieEx.toUTCString();
-  // Create the Cookie
-  document.cookie = n + "=" + c + "; expires=" + CookieEx + "; patch=/";
+  // If the cookie is for language
+  if (t == "l") {
+    // Create the Cookie
+    document.cookie = n + "=" + c + "; expires=" + CookieEx + "; path=/";
+  } else {
+    // Create the Cookie
+    document.cookie = n + "=" + c + "; expires=" + CookieEx + ";";
+  }
   // Reload the Site
   location.reload();
 }
@@ -195,21 +196,29 @@ function getCookie(p) {
 // * UK = English
 // TODO: Currently AT = DE, make AT = AT
 function checkLang() {
-  if (getCookie("lang") == null) {
-    switch (navigator.language) {
-      case ("en-EN", "en"):
-        cookie("UK");
-        break;
-      case ("de-DE", "de", "de-AT"):
-        cookie("DE");
-        break;
-      case ("it-IT", "it"):
-        cookie("IT");
-        break;
-      default:
-        cookie("UK");
-    }
-  }
+  var nv = navigator.language.toLowerCase();
+
+  var en = ["en-EN", "en"];
+  var de = ["de-DE", "de"];
+  var at = ["de-AT", "at"];
+  var it = ["it-IT", "it"];
+
+  // if (getCookie("lang") == null) {
+  //   if (en.includes(nv)) {
+  //     cookieLang("UK");
+  //   } else if (nv.includes(de)) {
+  //     cookieLang("DE");
+  //   } else if (nv.includes(at)) {
+  //     cookieLang("DE"); // TODO: Austrian
+  //   } else if (nv.includes(it)) {
+  //     cookieLang("IT");
+  //   } else {
+  //     cookieLang("UK");
+  //   }
+  // }
+}
+function cookieLang(x) {
+  cCookie("lang", x, 1, "l");
 }
 
 // If the Cookie "AcceptCookie" doesn't exist show the Div
@@ -485,12 +494,14 @@ function dontlog() {
 
 // get Dimensions
 function gcd(c, n) {
+  // Using the function in the function dont know anything
   return 0 == n ? c : gcd(n, c % n);
 }
 function getDimensions() {
   // Screen width and Screen Height
   return screen.width + "x" + screen.height;
 }
+// DONT KNOW
 function getAspectRatio() {
   let e = screen.width,
     t = screen.height,

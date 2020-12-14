@@ -1,8 +1,11 @@
 <?php
+session_name("yio_main");
+session_start();
+
 require("./lang/translate.php");
 require("../../lib/OS/array.php");
 require("../../lib/IP/ip.php");
-require("../../lib/LOG/log.php")
+require("../../lib/LOG/log.php");
 ?>
 <html lang="<?php echo $htmllang ?>">
 
@@ -84,19 +87,19 @@ require("../../lib/LOG/log.php")
                     <ul>
                         <li><button class="country"></button>
                             <ul>
-                                <li onclick="cCookie('lang', 'UK', 10);">
+                                <li onclick="cCookie('lang', 'UK', 10, 'l');">
                                     <i class="sl-flag flag-uk"></i>
                                     <span>English</span>
                                 </li>
-                                <li onclick="cCookie('lang', 'DE', 10);">
+                                <li onclick="cCookie('lang', 'DE', 10, 'l');">
                                     <i class="sl-flag flag-de"></i>
                                     <span>German</span>
                                 </li>
-                                <li onclick="cCookie('lang', 'AT', 10);">
+                                <li onclick="cCookie('lang', 'AT', 10, 'l');">
                                     <i class="sl-flag flag-at"></i>
                                     <span>Austrian</span>
                                 </li>
-                                <li onclick="cCookie('lang', 'IT', 10);">
+                                <li onclick="cCookie('lang', 'IT', 10, 'l');">
                                     <i class="sl-flag flag-it"></i>
                                     <span>Italy</span>
                                 </li>
@@ -569,6 +572,13 @@ require("../../lib/LOG/log.php")
             </div>
         </div>
     </footer>
+    <?php
+    if (isset($_SESSION['doCNT']) and $_SESSION['doCNT'] === 1) :
+    ?>
+        <script>
+            doCNT = "xyz";
+        </script>
+    <?php endif; ?>
     <script src="http://localhost/lib/jqeury-3.5.1/jquery-3.5.1.min.js"></script>
     <script src="http://localhost/lib/popper/popper.min.js"></script>
     <script src="http://localhost/lib/bootstrap-4.5.3/dist/js/bootstrap.min.js"></script>

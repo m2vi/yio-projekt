@@ -8,30 +8,62 @@ $version = $global['Version'];
 $filename = $global['Filename'];
 $path = $global['Path'];
 
-$lang = $_COOKIE['lang'];
-
 $normal = './lang/settings/settings.ini';
 $en = './lang/settings/settings.en.ini';
 $it = './lang/settings/settings.it.ini';
 $de = './lang/settings/settings.de.ini';
 
-if ($lang == "EN" and file_exists($en) and strlen(file_get_contents($en)) > "1200") {
-   $ini = parse_ini_file($en);
-   $htmllang = "en-EN";
-} elseif ($lang == "DE" and file_exists($de) and strlen(file_get_contents($de)) > "1200") {
-   $ini = parse_ini_file($de);
-   $htmllang = "de-DE";
-} elseif ($lang == "AT" and file_exists($de) and strlen(file_get_contents($de)) > "1200") {
-   $ini = parse_ini_file($de);
-   $htmllang = "de-AT";
-} elseif ($lang == "IT" and file_exists($it) and strlen(file_get_contents($it)) > "1200") {
-   $ini = parse_ini_file($it);
-   $htmllang = "it";
+$AcceptLang = ['en', 'de', 'it'];
+
+if (isset($_COOKIE['lang'])) {
+
+   $lang = $_COOKIE['lang'];
+
+   if ($lang == "EN" and verifyLang($en)) {
+      $ini = parse_ini_file($en);
+      $htmllang = "en-EN";
+   } elseif ($lang == "DE" and verifyLang($de)) {
+      $ini = parse_ini_file($de);
+      $htmllang = "de-DE";
+   } elseif ($lang == "AT" and verifyLang($de)) {
+      $ini = parse_ini_file($de);
+      $htmllang = "de-AT";
+   } elseif ($lang == "IT" and verifyLang($it)) {
+      $ini = parse_ini_file($it);
+      $htmllang = "it";
+   } else {
+      $ini = parse_ini_file($normal);
+      $htmllang = "en";
+   }
 } else {
-   $ini = parse_ini_file($normal);
-   $htmllang = "en";
+   $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+
+   if (in_array($lang, $AcceptLang)) {
+      clCookie($lang);
+      if (verifyLang("./lang/settings/settings." . $lang . ".ini")) {
+         $ini = parse_ini_file("./lang/settings/settings." . $lang . ".ini");
+      } else {
+         $ini = parse_ini_file("./lang/settings/settings.ini");
+      }
+      $htmllang = $lang;
+   } else {
+      $ini = parse_ini_file("./lang/settings/settings.ini");
+      $htmllang = $lang;
+   }
+}
+function clCookie($x)
+{
+   setcookie("lang", $x, time() + (86400 * 365), "/");
 }
 
+function verifyLang($x)
+{
+   if (file_exists($x) and strlen(file_get_contents($x)) > "1200") {
+      return 1;
+   } else {
+      return 0;
+   }
+}
 
 class Cookie
 {
