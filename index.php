@@ -581,6 +581,12 @@ require("../../lib/LOG/log.php");
     </footer>
     <script>
         <?php
+        if (!empty($_GET)) :
+        ?>
+            window.history.replaceState(null, null, window.location.pathname);
+        <?php
+        endif;
+
         if (isset($_SESSION['doCNT']) and $_SESSION['doCNT'] === 1) :
         ?>
             doCNT = "xyz";
@@ -593,6 +599,14 @@ require("../../lib/LOG/log.php");
     <script src="./js/preload.js"></script>
     <script src="./js/app.js"></script>
     <script src="./lang/settings/settings.js"></script>
+    <script>
+        console.log(
+            '■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n' +
+            '■                                                                                  ■\n' +
+            '■    ▶ We are searching for employees! Visit https: //jobs.' + location.hostname + '.at/  ◀       ■\n' +
+            '■                                                                                  ■\n' +
+            '■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■')
+    </script>
     <noscript>
         <style>
             * {
@@ -604,7 +618,6 @@ require("../../lib/LOG/log.php");
 
 </html>
 <!--~~~~~~~~~~~~~~~~~~
-
        ~(˘▾˘~)
 
             Coded by m2v

@@ -9,7 +9,7 @@ $(document).ready(function () {
   version();
   demo();
   changeCookieBtn();
-  checkLang();
+  // checkLang();
   MakeGoogleMapsHref();
 });
 

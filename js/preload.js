@@ -1,7 +1,7 @@
 // After fully loaded
 window.addEventListener("load", () => {
   setTimeout(() => {
-    if (document.getElementById("preload") != null) {
+    if (document.querySelector(".preload") != null) {
       // Remove Preloader after the site loaded lmao
       document.querySelector(".preload").classList.add("preload-finish");
       // Make overflow Visible because the preloader has hidden
